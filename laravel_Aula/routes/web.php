@@ -22,7 +22,10 @@ Route::get('/sql',[AlunoController::class,'sql'])->name('sql');
 // Usuário
 //----------------------------------
 Route::get("/usuario-form",[UsuariosController::class,'usuarioForm'])->name("usuario-form");
-
 Route::post("/usuario-form-submit",[UsuariosController::class,'usuarioFormSubmit'])->name("usuario-form-submit");
-
 Route::get("/usuario-lista",[UsuariosController::class,'usuarioLista'])->name("usuario-lista");
+
+
+Route::get("/usuario-edit/{id}",[UsuariosController::class,'usuarioEdit'])->name("usuario-edit");
+
+Route::post("/usuario-edit-submit",[UsuariosController::class,'usuarioEditSubmit'])->name("usuario-edit-submit");

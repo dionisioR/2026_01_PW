@@ -9,42 +9,58 @@ use Illuminate\Support\Facades\Crypt;
 class UsuariosController extends Controller
 {
     // exibir o formulário de cadastro de usuário
-    public function usuarioForm(){
+    public function usuarioForm()
+    {
         return view("usuario-form");
     }
 
     // validar e processar o formulário de cadastro de usuário
-    public function usuarioFormSubmit(Request $request){
+    public function usuarioFormSubmit(Request $request)
+    {
 
-            $request->validate([
-                "nome" => "required|min:2|max:150",
-                "email" => "required|email",
-                "senha" => "required|min:6"
-            ],[
-                "nome.required" => "O campo nome é obrigatório",
-                "nome.min" => "O nome deve conter no mínimo 2 caracteres",
-                "nome.max" => "O nome deve conter no máximo 150 caracteres",
-                "email.required" => "O campo email é obrigatório",
-                "email.email" => "Digite um email válido",
-                "senha.required" => "O campo senha é obrigatório",
-                "senha.min" => "A senha deve conter no mínimo 6 caracteres"
-            ]);
+        $request->validate([
+            "nome" => "required|min:2|max:150",
+            "email" => "required|email",
+            "senha" => "required|min:6"
+        ], [
+            "nome.required" => "O campo nome é obrigatório",
+            "nome.min" => "O nome deve conter no mínimo 2 caracteres",
+            "nome.max" => "O nome deve conter no máximo 150 caracteres",
+            "email.required" => "O campo email é obrigatório",
+            "email.email" => "Digite um email válido",
+            "senha.required" => "O campo senha é obrigatório",
+            "senha.min" => "A senha deve conter no mínimo 6 caracteres"
+        ]);
 
-            $usuario = new Usuarios();
-            $usuario->usu_nome = $request->nome;
-            $usuario->usu_email = $request->email;
-            $usuario->usu_senha = Crypt::encrypt($request->senha);
-            $usuario->save();
-   
-            return redirect()->route("usuario-form")->with("success", "Usuário cadastrado com sucesso!");
+        $usuario = new Usuarios();
+        $usuario->usu_nome = $request->nome;
+        $usuario->usu_email = $request->email;
+        $usuario->usu_senha = Crypt::encrypt($request->senha);
+        $usuario->save();
 
+        return redirect()->route("usuario-form")->with("success", "Usuário cadastrado com sucesso!");
     }
 
     // exibir a lista de usuários cadastrados
-    public function usuarioLista(){
-        
+    public function usuarioLista()
+    {
+
         $usuarios = Usuarios::all();
         return view("usuario-lista-todos", ["usuarios" => $usuarios]);
-        
+    }
+
+    // carregar o formulário de edição de usuário
+    public function usuarioEdit($id)
+    {
+        $id = Crypt::decrypt($id);
+        $usuario = Usuarios::find($id);
+        return view("usuario-edit", ["usuario" => $usuario]);
+    }
+
+    // validar e processar o formulário de edição de usuário
+    public function usuarioEditSubmit(Request $request) {
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
     }
 }

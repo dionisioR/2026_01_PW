@@ -11,8 +11,8 @@
             Usuários
         </h3>
 
-        <a href="#" class="btn btn-success">
-            <i class="bi bi-person-plus"></i>
+        <a href="{{ route('usuario-form') }}" class="btn btn-success">
+            <i class="bi bi-person-plus"></i> 
         </a>
 
     </div>
@@ -51,7 +51,7 @@
                     <div class="card-footer d-flex justify-content-end gap-2">
 
                         <!-- EDITAR -->
-                        <a href="#"
+                        <a href="{{ route('usuario-edit', ['id' => Crypt::encrypt($usuario->usu_id)]) }}"
                             class="btn btn-primary btn-sm"
                             title="Editar">
                             <i class="bi bi-pencil"></i>
