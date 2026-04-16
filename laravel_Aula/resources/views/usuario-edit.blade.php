@@ -82,7 +82,7 @@
 
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-check-circle"></i>
-                        Cadastrar
+                        Atualizar
                     </button>
 
                 </div>
