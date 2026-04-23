@@ -27,3 +27,11 @@ main{
     font-size:1.4rem;
     margin-right:10px;
 }
+
+/*LOGIN*/
+.login{
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

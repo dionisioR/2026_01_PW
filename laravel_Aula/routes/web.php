@@ -1,13 +1,9 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 //----------------------------------
 // Aluno
@@ -31,3 +27,12 @@ Route::post("/usuario-edit-submit",[UsuariosController::class,'usuarioEditSubmit
 Route::get("/usuario-delete/{id}",[UsuariosController::class,'usuarioDelete'])->name("usuario-delete");
 
 Route::get("/usuario-delete-submit/{id}",[UsuariosController::class,'usuarioDeleteSubmit'])->name("usuario-delete-submit");
+
+//----------------------------------
+// Autenticação
+//----------------------------------
+Route::get('/index', function () {
+    return view('welcome');
+});
+
+Route::get('/',[AutenticacaoController::class,'loginForm'])->name('loginForm');    

@@ -103,5 +103,9 @@ class UsuariosController extends Controller
 
     public function usuarioDeleteSubmit($id){
         // aqui deve ser implementada a lógica para deletar o usuário do banco de dados
+
+        $usuario = Usuarios::find(Crypt::decrypt($id));
+        $usuario->delete();
+        return redirect()->route("usuario-lista")->with("success", "Usuário deletado com sucesso!");
     }
 }
