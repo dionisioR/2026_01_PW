@@ -27,10 +27,62 @@
     </nav>
     <!-- ------------------------------------------- -->
     <div class="login">
-        <h3>
-            <i class="bi bi-box"></i>
-            Sistemas
-        </h3>
+
+
+        <div class="card w-50">
+            <h3 class="text-center my-5">
+                <i class="bi bi-box"></i>
+                Sistemas
+            </h3>
+            <div class="card-body">
+
+                <form action="{{ route('loginFormSubmit') }}" method="POST">
+                    @csrf
+                    <!-- e-mail -->
+                    <div class="mb-3 px-5">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email">
+
+                        @error('email')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+                    <!-- senha -->
+                    <div class="mb-3 px-5">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" name="senha">
+
+                        @error('senha')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- button -->
+                    <div class="my-4 px-5">
+                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mb-5 px-5 text-center">
+                Não possui conta? <a href="{{ route('usuario-form') }}" class="">Cadastrar</a>
+            </div>
+
+
+
+            <div class="mb-5 px-5 text-center">
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+            </div>
+
+        </div>
+
+
     </div>
     <!-- ------------------------------------------- -->
 

@@ -36,3 +36,4 @@ Route::get('/index', function () {
 });
 
 Route::get('/',[AutenticacaoController::class,'loginForm'])->name('loginForm');    
+Route::post('/login-form-submit',[AutenticacaoController::class,'loginFormSubmit'])->name('loginFormSubmit');
