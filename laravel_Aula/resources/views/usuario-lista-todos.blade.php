@@ -50,18 +50,20 @@
 
                 <div class="card-footer d-flex justify-content-end gap-2">
 
+                @if(session('id') == $usuario->usu_id)
+
                     <!-- EDITAR -->
                     <a href="{{ route('usuario-edit', ['id' => Crypt::encrypt($usuario->usu_id)]) }}"
                         class="btn btn-primary btn-sm"
                         title="Editar">
                         <i class="bi bi-pencil"></i>
                     </a>
-
-                    <!-- DELETAR -->
-                    
-                    <a href="{{ route('usuario-delete', ['id' => Crypt::encrypt($usuario->usu_id)]) }}" class="btn btn-danger btn-sm">
-                         <i class="bi bi-trash"></i>
+                @else
+                    <!-- DELETAR -->                  
+                    <a href="#" class="btn btn-sm">
+                        <i class="bi bi-emoji-smile"></i>
                     </a>
+                @endif
 
                 
 
